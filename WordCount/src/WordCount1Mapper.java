@@ -1,0 +1,33 @@
+import java.io.IOException;
+import java.util.StringTokenizer;
+
+import org.apache.hadoop.io.IntWritable;
+import org.apache.hadoop.io.LongWritable;
+import org.apache.hadoop.io.Text;
+import org.apache.hadoop.mapred.*;
+
+public class WordCount1Mapper extends MapReduceBase implements Mapper<LongWritable, Text, Text, Text> {
+    private Text keyP = new Text();
+
+	public void map(LongWritable key, Text value, OutputCollector<Text, Text> output, Reporter reporter) throws IOException {
+		System.out.println("mapper");
+
+		StringTokenizer itr = new StringTokenizer(value.toString());
+	      while (itr.hasMoreTokens()) {
+	    	String s = itr.nextToken();
+	    	String[] input = s.split(",");
+	    	float point = Float.parseFloat(input[0]);
+	    	
+	    	for(int i=0; i<WordCount1Driver.listP.size(); i++) {
+	    		float p = WordCount1Driver.listP.get(i);
+//	    		System.out.println(p);
+		    	float distance = (float)Math.sqrt((point - p)*(point - p));
+
+		    	keyP.set(Float.toString(p));
+		        Text t = new Text();
+		        t.set(distance + " " + input[1]);
+		        output.collect(keyP, t);
+	    	}
+	      }
+	}
+}
