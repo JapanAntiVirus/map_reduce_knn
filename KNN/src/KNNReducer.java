@@ -5,7 +5,7 @@ import org.apache.hadoop.io.IntWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.*;
 
-public class WordCount1Reducer extends MapReduceBase implements Reducer<Text, Text, Text, Text> {
+public class KNNReducer extends MapReduceBase implements Reducer<Text, Text, Text, Text> {
 	
 	public float getValue(String s) {
 		return Float.parseFloat(s.split(" ")[0]);
@@ -41,7 +41,7 @@ public class WordCount1Reducer extends MapReduceBase implements Reducer<Text, Te
 		Text key = t_key;
 		System.out.println("reduce");
 		List<String> k_min = new ArrayList<String>();
-		for(int i=0; i<WordCount1Driver.k; i++) k_min.add("999999999 ");
+		for(int i=0; i<KNNDriver.k; i++) k_min.add("999999999 ");
 		
 		while (values.hasNext()) {
 			String value = values.next().toString();

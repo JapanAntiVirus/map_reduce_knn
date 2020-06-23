@@ -6,7 +6,7 @@ import org.apache.hadoop.io.LongWritable;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapred.*;
 
-public class WordCount1Mapper extends MapReduceBase implements Mapper<LongWritable, Text, Text, Text> {
+public class KNNMapper extends MapReduceBase implements Mapper<LongWritable, Text, Text, Text> {
     private Text keyP = new Text();
 
 	public void map(LongWritable key, Text value, OutputCollector<Text, Text> output, Reporter reporter) throws IOException {
@@ -18,8 +18,8 @@ public class WordCount1Mapper extends MapReduceBase implements Mapper<LongWritab
 	    	String[] input = s.split(",");
 	    	float point = Float.parseFloat(input[0]);
 	    	
-	    	for(int i=0; i<WordCount1Driver.listP.size(); i++) {
-	    		float p = WordCount1Driver.listP.get(i);
+	    	for(int i=0; i<KNNDriver.listP.size(); i++) {
+	    		float p = KNNDriver.listP.get(i);
 //	    		System.out.println(p);
 		    	float distance = (float)Math.sqrt((point - p)*(point - p));
 

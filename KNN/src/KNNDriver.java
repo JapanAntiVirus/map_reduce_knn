@@ -5,7 +5,7 @@ import org.apache.hadoop.fs.Path;
 import org.apache.hadoop.io.*;
 import org.apache.hadoop.mapred.*;
 
-public class WordCount1Driver {
+public class KNNDriver {
 	public static List<Float> listP;
 	public static int k = 3;
 	
@@ -18,7 +18,7 @@ public class WordCount1Driver {
 		
 		JobClient my_client = new JobClient();
 		// Create a configuration object for the job
-		JobConf job_conf = new JobConf(WordCount1Driver.class);
+		JobConf job_conf = new JobConf(KNNDriver.class);
 
 		// Set a name of the Job
 		job_conf.setJobName("Kiem tra cuoi ki");
@@ -28,8 +28,8 @@ public class WordCount1Driver {
 		job_conf.setOutputValueClass(Text.class);
 
 		// Specify names of Mapper and Reducer Class
-		job_conf.setMapperClass(WordCount1Mapper.class);
-		job_conf.setReducerClass(WordCount1Reducer.class);
+		job_conf.setMapperClass(KNNMapper.class);
+		job_conf.setReducerClass(KNNReducer.class);
 
 		// Specify formats of the data type of Input and output
 		job_conf.setInputFormat(TextInputFormat.class);
