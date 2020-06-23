@@ -27,7 +27,7 @@ public class WordCount1Mapper extends MapReduceBase implements Mapper<LongWritab
 		        Text val = new Text();
 		        val.set(distance + " " + input[1]);
 		        output.collect(keyP, val);
-		        //System.out.println(keyP.toString() + " " + val.toString());
+//		        System.out.println(keyP.toString() + " " + val.toString());
 	    	}
 	      }
 	}
