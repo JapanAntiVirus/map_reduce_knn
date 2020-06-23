@@ -24,9 +24,10 @@ public class WordCount1Mapper extends MapReduceBase implements Mapper<LongWritab
 		    	float distance = (float)Math.sqrt((point - p)*(point - p));
 
 		    	keyP.set(Float.toString(p));
-		        Text t = new Text();
-		        t.set(distance + " " + input[1]);
-		        output.collect(keyP, t);
+		        Text val = new Text();
+		        val.set(distance + " " + input[1]);
+		        output.collect(keyP, val);
+		        //System.out.println(keyP.toString() + " " + val.toString());
 	    	}
 	      }
 	}

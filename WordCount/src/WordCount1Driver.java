@@ -11,9 +11,10 @@ public class WordCount1Driver {
 	
 	public static void main(String[] args) {
 		listP = new ArrayList<Float>();
-		for(float i=0; i<30; i+=3) {
+		for(float i=3; i<30; i+=3) {
 			listP.add(i);
 		}
+//		listP.add((float)7);
 		
 		JobClient my_client = new JobClient();
 		// Create a configuration object for the job
